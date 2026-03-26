@@ -1,3 +1,12 @@
 venv/
 __pycache__/
 *.pyc
+*.pyo
+.env
+.venv/
+*.egg-info/
+dist/
+build/
+.vscode/
+server.stderr.log
+server.stdout.log
