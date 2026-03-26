@@ -1,10 +1,24 @@
+# === Web Framework ===
 Flask==2.2.5
 Werkzeug==2.3.8
 Jinja2==3.1.6
+
+# === WSGI Server ===
 gunicorn==20.0.4
+
+# === TensorFlow 2.6 Ecosystem (all must be version 2.6.x) ===
+tensorflow==2.6.0
+keras==2.6.0
+tensorboard==2.6.0
+tensorflow-estimator==2.6.0
+
+# === TensorFlow Sub-dependency Pins ===
+protobuf>=3.9.2,<3.21
 numpy~=1.19.2
-Pillow==7.2.0
+
+# === ML / Data Science ===
 scikit-learn==0.23.1
 scipy==1.5.1
-tensorflow==2.6.0
-protobuf>=3.9.2,<3.21
+
+# === Image Processing ===
+Pillow==7.2.0
