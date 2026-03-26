@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="row"  style="margin-bottom: 477px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                {% if pred == 1 %}
+                    <div class="alert alert-danger text-center mb-4">Sorry! Please consult DOCTOR.</div>
+                {% else %}
+                    <div class="alert alert-success text-center mb-4">Great! You are HEALTHY.</div>
+                {% endif %}
+
+                {% if risk_score is not none %}
+                    <h5 class="text-center">{{ score_label or 'Disease Risk Score' }}: {{ '%.2f'|format(risk_score) }}%</h5>
+                    <div class="progress" style="height: 24px; margin-top: 15px;">
+                        <div
+                            class="progress-bar {% if risk_score >= 50 %}bg-danger{% else %}bg-success{% endif %}"
+                            role="progressbar"
+                            style="width: {{ '%.2f'|format(risk_score) }}%;"
+                            aria-valuenow="{{ '%.2f'|format(risk_score) }}"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        >
+                            {{ '%.2f'|format(risk_score) }}%
+                        </div>
+                    </div>
+                    <p class="text-center text-muted mt-3 mb-0">Screening support only. This is not a medical diagnosis.</p>
+                {% endif %}
+
+                {% if explanation_summary %}
+                    <hr>
+                    <h5 class="mb-3">Model Explanation</h5>
+                    <p>{{ explanation_summary }}</p>
+                    {% if feature_explanations %}
+                        <ul class="mb-0">
+                            {% for item in feature_explanations %}
+                                <li>{{ item.sentence }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><a href="{{ url_for('home') }}" class="btn btn-block btn-primary">Back to Home</a></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

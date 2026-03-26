@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+{% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endif %}
+
+<div class="container">
+    <div class="card card-body" style="border: 1px solid black; box-shadow: 0 0 10px black;">
+        <h2>{{ overview.title }}</h2>
+        <p>{{ overview.description }}</p>
+        <p class="text-muted mb-4">{{ overview.disclaimer }}</p>
+
+        <h3>Model Accuracies</h3>
+        <ul class="mb-4">
+            {% for model in model_accuracies %}
+                <li>{{ model.name }}: <strong>{{ model.accuracy }}</strong></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Diseases Covered by This Web App</h3>
+        <p class="mb-4">The following summaries describe the conditions that can be screened by the available prediction models.</p>
+
+        {% for disease in disease_details %}
+            <div class="card card-body mb-3" style="box-shadow: 0 0 5px black;">
+                <h4>{{ disease.name }}</h4>
+                <p>{{ disease.description }}</p>
+                <h5>Common Symptoms</h5>
+                <ul class="mb-0">
+                    {% for symptom in disease.symptoms %}
+                        <li>{{ symptom }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
